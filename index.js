@@ -44,10 +44,7 @@ app.use(myLogger);
 app.use(requestedTime);
 app.use(express.static('public'));
 
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something broke!');
-});
+
 
 /* Checking the url path according to the request, then responding */
 app.get("/", (req, res)=>{
@@ -62,6 +59,11 @@ app.get("/documentation", (req, res)=>{
 
 app.get("/movies", (req, res)=>{
     res.json(topMovies);
+});
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
 });
 
 app.listen(8080, ()=>{

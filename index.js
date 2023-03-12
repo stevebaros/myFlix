@@ -1,8 +1,13 @@
 const express = require("express");
+const fs = require("fs");
 const morgan = require("morgan");
 const app = express();
 
-app.use(morgan("common"));
+
+app.use(morgan('common', {
+    stream: fs.createWriteStream('./log.txt', {flags: 'a'})
+}));
+app.use(morgan('dev'));
 
 let topMovies = [{
         title: "Toylar Muborak",

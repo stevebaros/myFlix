@@ -9,7 +9,7 @@ table, th, td{
     
 
 }
-tr, td{
+li,tr, td{
     padding: 10px;
     text-align: left;
 }

@@ -222,7 +222,7 @@ app.get("/documentation", (req, res) => {
 
 /* Request to get the list of  all movies */
 app.get("/movies", (req, res) => {
-    Users.find().then(movies => {
+    Movies.find().then(movies => {
         res.json(movies);
     })
 

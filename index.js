@@ -27,7 +27,7 @@ app.use(morgan('common', {
 }));
 app.use(morgan('dev'));
 
-let topMovies = [{
+/* let topMovies = [{
         title: 'The Lord of the Rings: The Return of the King',
         description: 'Continuing the plot of the previous film, Frodo, Sam and Gollum are making their final way toward Mount Doom in Mordor in order to destroy the One Ring, unaware of Gollum\'s true intentions, while Merry, Pippin, Gandalf, Aragorn, Legolas, Gimli and the rest are joining forces together against Sauron and his legions in Minas Tirith.',
         genre: {
@@ -188,7 +188,7 @@ let topMovies = [{
         featured: 'yes'
     },
 ];
-
+ */
 /* Middleware functions */
 let myLogger = (req, res, next) => {
     console.log(req.url);

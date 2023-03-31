@@ -6,11 +6,12 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const models = require("./models.js");
 const app = express();
+const {check} = require("express-validator");
 
 const Movies = models.Movie;
 const Users = models.User;
 
-mongoose.connect('mongodb://localhost:27017/CFdb', {
+mongoose.connect("mongodb://gulhayosayfullayeva:uGsq1VXnMDAiHzVW@ac-ikioan3-shard-00-00.2nuttf5.mongodb.net:27017,ac-ikioan3-shard-00-01.2nuttf5.mongodb.net:27017,ac-ikioan3-shard-00-02.2nuttf5.mongodb.net:27017/?ssl=true&replicaSet=atlas-ssgk59-shard-0&authSource=admin&retryWrites=true&w=majority" , {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -19,8 +20,13 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+/* CORS:(for allowed domains) in order to filter the domains which can request to our server */
+const cors = require('cors');
+app.use(cors()); /* if there are certain domains, they will be added here */
 let auth = require("./auth")(app);
+
 const passport = require("passport");
+const { validationResult } = require("express-validator");
 require("./passport");
 
 app.use(morgan('common', {
@@ -230,6 +236,12 @@ app.get("/movies", passport.authenticate("jwt", {session: false}), (req, res) =>
     })
 
 });
+app.get("/users",  (req, res) => {
+    Users.find().then(users => {
+        res.json(users);
+    })
+
+});
 
 /* Request to get the movie according to the its title */
 app.get('/movies/:title', passport.authenticate("jwt", {session: false}),(req, res) => {
@@ -280,7 +292,18 @@ app.get("/movies/directors/:directorName", passport.authenticate("jwt", {session
 });
 
 /* Request to register new user */
-app.post("/users",(req, res) => {
+app.post("/users",
+        [
+            check("username", "username required").isLength({min:5}),
+            check("username", "username should contain only alphanumeric").isAlphanumeric(),
+            check("password", "password required").not().isEmpty(),
+            check("email", "email should be valid").isEmail()
+        ],(req, res) => {
+    let errors = validationResult(req);    
+    let hashedPassword = Users.hashPassword(req.body.password);
+    if( !errors.isEmpty()){
+        return res.status(422).json({errors: errors.array()});
+    }
     Users.findOne({
         "username": req.body.username
     }, function (error, result) {
@@ -289,7 +312,7 @@ app.post("/users",(req, res) => {
         } else {
             Users.create({
                 "username": req.body.username,
-                "password": req.body.password,
+                "password": hashedPassword,
                 "email": req.body.email,
                 "birthday": req.body.birthday
             }, (error, created) => {
@@ -384,6 +407,7 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something broke!');
 });
 
-app.listen(8080, () => {
-    console.log("Server is listening on port 8080");
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0',() => {
+ console.log('Listening on Port ' + port);
 });

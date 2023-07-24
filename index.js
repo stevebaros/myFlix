@@ -11,7 +11,7 @@ const {check} = require("express-validator");
 const Movies = models.Movie;
 const Users = models.User;
 
-mongoose.connect("mongodb+srv://gulhayosayfullayeva:ZfgPyoS9P9TuQy0U@cfdb.2nuttf5.mongodb.net/CFdb?retryWrites=true&w=majority" , {
+mongoose.connect("mongodb+srv://gulhayosayfullayeva:ZfgPyoS9P9TuQy0U@cfdb.2nuttf5.mongodb.net/?retryWrites=true&w=majority" , {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

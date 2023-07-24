@@ -11,7 +11,7 @@ const {check} = require("express-validator");
 const Movies = models.Movie;
 const Users = models.User;
 
-mongoose.connect("mongodb://gulhayosayfullayeva:uGsq1VXnMDAiHzVW@ac-ikioan3-shard-00-00.2nuttf5.mongodb.net:27017,ac-ikioan3-shard-00-01.2nuttf5.mongodb.net:27017,ac-ikioan3-shard-00-02.2nuttf5.mongodb.net:27017/CFdb?ssl=true&replicaSet=atlas-ssgk59-shard-0&authSource=admin&retryWrites=true&w=majority" , {
+mongoose.connect("mongodb+srv://gulhayosayfullayeva:Jafarbek22102014@cluster0.6hiy0jh.mongodb.net/?retryWrites=true&w=majority" , {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -197,6 +197,8 @@ app.use(morgan('dev'));
         featured: 'yes'
     },
 ];
+
+https://myflix-x2py.onrender.com/
  */
 /* Middleware functions */
 let myLogger = (req, res, next) => {
@@ -217,7 +219,7 @@ app.use(express.static('public'));
 
 /* Checking the url path according to the request, then responding */
 app.get("/", (req, res) => {
-    let res_Text = "Welcome!!!";
+    let res_Text = "Welcome!!!!!!!!!!!!!";
     res_Text += "Requested: " + req.requestTime;
     res.send(res_Text);
 });

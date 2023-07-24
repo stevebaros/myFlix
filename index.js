@@ -235,6 +235,7 @@ app.get("/documentation", (req, res) => {
 app.get("/movies", (req, res) => {
     Movies.find().then(movies => {
         res.json(movies);
+        console.log(movies);
     })
 
 });

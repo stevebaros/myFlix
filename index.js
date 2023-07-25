@@ -11,10 +11,14 @@ const {check} = require("express-validator");
 const Movies = models.Movie;
 const Users = models.User;
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb+srv://gulhayosayfullayeva:ZfgPyoS9P9TuQy0U@cfdb.2nuttf5.mongodb.net/CFdb?retryWrites=true&w=majority" , {
+/* mongoose.connect("mongodb+srv://gulhayosayfullayeva:ZfgPyoS9P9TuQy0U@cfdb.2nuttf5.mongodb.net/CFdb?retryWrites=true&w=majority" , {
     useNewUrlParser: true,
     useUnifiedTopology: true
-});
+}); */
+mongoose.connect("mongodb+srv://gulhayosayfullayeva:Jafarbek22102014@cluster0.6hiy0jh.mongodb.net/myflixDB?retryWrites=true&w=majority",{
+    usenewUrlParser: true,
+    useUnifiedToplogy: true
+})
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true

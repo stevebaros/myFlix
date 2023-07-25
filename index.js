@@ -15,10 +15,14 @@ mongoose.Promise = global.Promise;
     useNewUrlParser: true,
     useUnifiedTopology: true
 }); */
-mongoose.connect("mongodb+srv://gulhayosayfullayeva:Jafarbek22102014@cluster0.6hiy0jh.mongodb.net/myflixDB?retryWrites=true&w=majority",{
+/* mongoose.connect("mongodb+srv://gulhayosayfullayeva:Jafarbek22102014@cluster0.6hiy0jh.mongodb.net/myflixDB?retryWrites=true&w=majority",{
     usenewUrlParser: true,
     useUnifiedToplogy: true
-})
+}) */
+mongoose.connect("mongodb://gulhayosayfullayeva:ZfgPyoS9P9TuQy0U@ac-ikioan3-shard-00-00.2nuttf5.mongodb.net:27017,ac-ikioan3-shard-00-01.2nuttf5.mongodb.net:27017,ac-ikioan3-shard-00-02.2nuttf5.mongodb.net:27017/CFdb?ssl=true&replicaSet=atlas-ssgk59-shard-0&authSource=admin&retryWrites=true&w=majority" , {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true

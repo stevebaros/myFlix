@@ -10,7 +10,7 @@ const {check} = require("express-validator");
 
 const Movies = models.Movie;
 const Users = models.User;
-
+mongoose.Promise = global.Promise;
 mongoose.connect("mongodb+srv://gulhayosayfullayeva:ZfgPyoS9P9TuQy0U@cfdb.2nuttf5.mongodb.net/test?retryWrites=true&w=majority" , {
     useNewUrlParser: true,
     useUnifiedTopology: true

@@ -19,7 +19,7 @@ mongoose.Promise = global.Promise;
     usenewUrlParser: true,
     useUnifiedToplogy: true
 }) */
-mongoose.connect("mongodb://gulhayosayfullayeva:ZfgPyoS9P9TuQy0U@ac-ikioan3-shard-00-00.2nuttf5.mongodb.net:27017,ac-ikioan3-shard-00-01.2nuttf5.mongodb.net:27017,ac-ikioan3-shard-00-02.2nuttf5.mongodb.net:27017/CFdb?ssl=true&replicaSet=atlas-ssgk59-shard-0&authSource=admin&retryWrites=true&w=majority" , {
+mongoose.connect("mongodb+srv://gulhayosayfullayeva:ZfgPyoS9P9TuQy0U@cfdb.2nuttf5.mongodb.net/CFdb?retryWrites=true&w=majority" , {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

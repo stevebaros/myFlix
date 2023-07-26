@@ -248,7 +248,7 @@ app.get("/movies", (req, res) => {
     })
 
 });
-app.get("/users",  (req, res) => {
+app.get("/users", passport.authenticate("jwt", {session: false}), (req, res) => {
     Users.find().then(users => {
         res.json(users);
     })

@@ -19,11 +19,32 @@ mongoose.Promise = global.Promise;
     usenewUrlParser: true,
     useUnifiedToplogy: true
 }) */
-mongoose.connect("mongodb://gulhayosayfullayeva:ZfgPyoS9P9TuQy0U@cfdb.2nuttf5.mongodb.net/CFdb?retryWrites=true&w=majority
-" , {
+// Your MongoDB URI
+const username = "gulhayosayfullayeva";
+const password = "ZfgPyoS9P9TuQy0U";
+const cluster = "cfdb.2nuttf5.mongodb.net";
+const database = "CFdb";
+
+// Properly encode the credentials for use in the URI
+const encodedUsername = encodeURIComponent(username);
+const encodedPassword = encodeURIComponent(password);
+const uri = `mongodb+srv://${encodedUsername}:${encodedPassword}@${cluster}/${database}?retryWrites=true&w=majority`;
+
+// Connect to MongoDB
+mongoose
+  .connect(uri, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Connected to MongoDB successfully!");
+    // Start your server or do other tasks after the connection is established.
+  })
+  .catch((error) => {
+    console.error("Error connecting to MongoDB:", error.message);
+  });
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
